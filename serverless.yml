@@ -1,0 +1,73 @@
+# Welcome to serverless. Read the docs
+# https://serverless.com/framework/docs/
+
+# Serverless.yml is the configuration the CLI
+# uses to deploy your code to your provider of choice
+
+# The `service` block is the name of the service
+service: dcm-notes
+
+# The `provider` block defines where your service will be deployed
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: us-east-1
+  environment:
+    NOTES_TABLE: dcm_notes_${opt:stage, self:provider.stage}
+
+  iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+    Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.NOTES_TABLE}"
+
+# The `functions` block defines what code to deploy
+functions:
+  getNotesForMember:
+    handler: handler.getNotesForMember
+    events:
+      - http:
+          path: notes/{clanId}/{membershipId}
+          method: get
+          request:
+            parameters:
+              paths:
+                clanId: true
+                membershipId: true
+
+  addNoteForMember:
+    handler: handler.addNoteForMember
+    events:
+      - http:
+          path: notes/{clanId}/{membershipId}
+          method: post
+          request:
+            parameters:
+              paths:
+                clanId: true
+                membershipId: true
+
+resources:
+  Resources:
+    DestinyClanManagerRemovalHistoryTable:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.NOTES_TABLE}

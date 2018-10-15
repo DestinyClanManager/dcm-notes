@@ -1,3 +1,4 @@
 {
-  "mocha.enabled": false
+  "git.ignoreLimitWarning": true,
+  "jest.pathToConfig": "./test/unit/jest.unit.config.js"
 }

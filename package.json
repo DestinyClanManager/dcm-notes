@@ -4,13 +4,31 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "jest --config test/unit/jest.unit.config.js --coverage",
+    "test:integration": "npm run deploy:test && jest --config test/integration/jest.integration.config.js",
+    "deploy:test": "sls deploy --stage test --aws-s3-accelerate",
+    "deploy:dev": "sls deploy --stage dev",
+    "deploy:prod": "sls deploy --stage prod"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Tom Carter",
+  "license": "No License",
   "dependencies": {
     "aws-sdk": "^2.212.1",
     "uuid": "^3.2.1"
-  }
+  },
+  "devDependencies": {
+    "dotenv": "^6.1.0",
+    "jest": "^23.6.0",
+    "serverless": "^1.32.0",
+    "supertest": "^3.3.0",
+    "testdouble": "^3.8.2",
+    "testdouble-jest": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DestinyClanManager/dcm-notes.git"
+  },
+  "private": true
 }

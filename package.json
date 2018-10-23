@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "jest --config test/unit/jest.unit.config.js --coverage",
-    "test:integration": "npm run deploy:test && jest --config test/integration/jest.integration.config.js",
+    "test:integration": "jest --config test/integration/jest.integration.config.js",
     "deploy:test": "sls deploy --stage test --aws-s3-accelerate",
     "deploy:dev": "sls deploy --stage dev",
     "deploy:prod": "sls deploy --stage prod"

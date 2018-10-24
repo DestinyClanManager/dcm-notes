@@ -21,6 +21,7 @@
   "devDependencies": {
     "dotenv": "^6.1.0",
     "jest": "^23.6.0",
+    "jest-trx-results-processor": "0.0.7",
     "serverless": "^1.32.0",
     "supertest": "^3.3.0",
     "testdouble": "^3.8.2",

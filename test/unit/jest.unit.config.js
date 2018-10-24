@@ -7,5 +7,6 @@ module.exports = {
   setupFiles: ['<rootDir>/test/unit/test.env.setup'],
   coverageDirectory: '<rootDir>/.test/unit/coverage',
   collectCoverageFrom: ['<rootDir>/src/**/*.js'],
-  testPathIgnorePatterns: ['<rootDir>/test/integration']
+  testPathIgnorePatterns: ['<rootDir>/test/integration'],
+  testResultsProcessor: '<rootDir>/test/unit/unit-result-reporter.js'
 }

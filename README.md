@@ -1,5 +1,7 @@
 # dcm-notes
 
+[![Build status](https://heymrcarter.visualstudio.com/Destiny%20Clan%20Manager/_apis/build/status/DCM-Notes)](https://heymrcarter.visualstudio.com/Destiny%20Clan%20Manager/_build/latest?definitionId=18)
+
 > Notes microservice for Destiny Clan Manager
 
 ## Endpoints

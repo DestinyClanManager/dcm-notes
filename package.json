@@ -15,7 +15,7 @@
   "author": "Tom Carter",
   "license": "No License",
   "dependencies": {
-    "aws-sdk": "^2.212.1",
+    "aws-sdk": "^2.814.0",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
